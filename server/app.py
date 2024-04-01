@@ -42,13 +42,14 @@ def earthquakes_by_magnitude(magnitude):
     eqs = Earthquake.query.filter(Earthquake.magnitude >= magnitude).all()
     eq_dicts = []
     for eq in eqs:
-        eq_dict = {
-            'id': eq.id,
-            'magnitude': eq.magnitude,
-            'location': eq.location,
-            'year': eq.year
-        }
-        eq_dicts.append(eq_dict)
+        eq_dicts.append(eq.to_dict())
+        # eq_dict = {
+        #     'id': eq.id,
+        #     'magnitude': eq.magnitude,
+        #     'location': eq.location,
+        #     'year': eq.year
+        # }
+        # eq_dicts.append(eq_dict)
     
     return make_response({
         'count': len(eqs),
